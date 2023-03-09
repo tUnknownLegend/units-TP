@@ -1,6 +1,6 @@
 import type { Product, SortBy } from '../types';
 
-const getProductRUBPrice = (product: Product) =>
+export const getProductRUBPrice = (product: Product) =>
     product.priceSymbol === '$' ? product.price * 70 : product.price;
 
 export const productComparator =
