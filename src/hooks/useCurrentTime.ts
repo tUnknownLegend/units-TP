@@ -1,16 +1,12 @@
 import { useEffect, useState } from 'react';
 
-export const useCurrentTime = () => {
-    const [currentTime, setCurrentTime] = useState(
-        new Date().toLocaleTimeString('ru-RU')
-    );
+export const useCurrentTime = (
+    callback = () => new Date().toLocaleTimeString('ru-RU')
+) => {
+    const [currentTime, setCurrentTime] = useState(callback);
 
     useEffect(() => {
-        const interval = setInterval(
-            () => setCurrentTime(new Date().toLocaleTimeString('ru-RU')),
-            1000
-        );
-
+        const interval = setInterval(() => setCurrentTime(callback), 1000);
         return () => clearInterval(interval);
     });
 

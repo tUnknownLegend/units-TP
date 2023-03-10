@@ -1,4 +1,4 @@
-import { describe, expect, test } from '@jest/globals';
+import { describe } from '@jest/globals';
 import { Category, PriceSymbol } from '../types';
 import { applyCategories } from './applyCategories';
 
@@ -32,8 +32,6 @@ describe('', () => {
                 ],
                 ['Электроника']
             )
-        ).toEqual([
-            defaultCategory
-        ]);
+        ).toEqual([defaultCategory]);
     });
 });

@@ -1,4 +1,4 @@
-import { describe, expect, test } from '@jest/globals';
+import { describe } from '@jest/globals';
 import { getNextSortBy } from './getNextSortBy';
 
 describe('', () => {

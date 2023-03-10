@@ -16,8 +16,8 @@ const elem = {
     imgUrl: 'string',
 };
 
-describe('Categories test', () => {
-    it('no img', () => {
+describe('ProductCard snapshot', () => {
+    it('should have no img', () => {
         const renderedProductCard = render(
             <ProductCard
                 id={elem.id}
@@ -31,7 +31,7 @@ describe('Categories test', () => {
         );
         expect(renderedProductCard.asFragment()).toMatchSnapshot();
     });
-    it('img', () => {
+    it('should have img', () => {
         const renderedProductCard = render(
             <ProductCard
                 id={elem.id}

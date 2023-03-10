@@ -1,5 +1,5 @@
-import { describe, expect, test } from '@jest/globals';
-import { Category, PriceSymbol } from '../types';
+import { describe } from '@jest/globals';
+import { Category } from '../types';
 import { productComparator, getProductRUBPrice } from './productComparator';
 
 const defaultProduct = {
