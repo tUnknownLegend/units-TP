@@ -66,6 +66,7 @@ describe('checks text fields on main page', () => {
     });
 
     it('should have VK Маркет name and match snapshot', () => {
+        jest.useFakeTimers().setSystemTime(new Date('2020-01-01T00:00:00'));
         const renderedMainPage = render(<MainPage />);
 
         expect(renderedMainPage.getByText('VK Маркет')).toHaveClass(
