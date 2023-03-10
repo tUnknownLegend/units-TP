@@ -1,16 +1,16 @@
 import { describe } from '@jest/globals';
 import { getNextSortBy } from './getNextSortBy';
 
-describe('', () => {
-    it('', () => {
+describe('getNextSortBy function', () => {
+    it('по умолчанию', () => {
         expect(getNextSortBy('по умолчанию')).toEqual('по возрастанию цены');
     });
-    it('', () => {
+    it('по возрастанию цены', () => {
         expect(getNextSortBy('по возрастанию цены')).toEqual(
             'по убыванию цены'
         );
     });
-    it('', () => {
+    it('по убыванию цены', () => {
         expect(getNextSortBy('по убыванию цены')).toEqual('по умолчанию');
     });
 });

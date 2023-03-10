@@ -11,18 +11,18 @@ const defaultCategory = {
     category: 'Электроника' as Category,
     priceSymbol: '₽' as PriceSymbol,
 };
-describe('', () => {
+describe('applyCategories function', () => {
     it('empty categories', () => {
         expect(applyCategories([defaultCategory], [])).toEqual([
             defaultCategory,
         ]);
     });
-    it('', () => {
+    it('single category', () => {
         expect(applyCategories([defaultCategory], ['Электроника'])).toEqual([
             defaultCategory,
         ]);
     });
-    it('', () => {
+    it('many products', () => {
         expect(
             applyCategories(
                 [

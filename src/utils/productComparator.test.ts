@@ -10,7 +10,7 @@ const defaultProduct = {
     category: 'Электроника' as Category,
 };
 
-describe('test getProductRUBPrice func', () => {
+describe('getProductRUBPrice func', () => {
     it('have no explicit priceSymbol', () => {
         expect(
             getProductRUBPrice({
@@ -42,14 +42,14 @@ describe('test getProductRUBPrice func', () => {
     });
 });
 
-describe('по умолчанию', () => {
-    it('equal', () => {
+describe('productComparator по умолчанию', () => {
+    it('equal price', () => {
         expect(
             productComparator('по умолчанию')(defaultProduct, defaultProduct)
         ).toEqual(0);
     });
 
-    it('less', () => {
+    it('less price', () => {
         expect(
             productComparator('по умолчанию')(
                 { ...defaultProduct, price: 123 },
@@ -58,7 +58,7 @@ describe('по умолчанию', () => {
         ).toEqual(0);
     });
 
-    it('more', () => {
+    it('more price', () => {
         expect(
             productComparator('по умолчанию')(
                 { ...defaultProduct, price: 23434.234 },
@@ -68,8 +68,8 @@ describe('по умолчанию', () => {
     });
 });
 
-describe('по убыванию цены', () => {
-    it('equal', () => {
+describe('productComparator по убыванию цены', () => {
+    it('equal price', () => {
         expect(
             productComparator('по убыванию цены')(
                 defaultProduct,
@@ -78,7 +78,7 @@ describe('по убыванию цены', () => {
         ).toEqual(0);
     });
 
-    it('less', () => {
+    it('less price', () => {
         expect(
             productComparator('по убыванию цены')(
                 { ...defaultProduct, price: 123 },
@@ -87,7 +87,7 @@ describe('по убыванию цены', () => {
         ).toEqual(1);
     });
 
-    it('more', () => {
+    it('more price', () => {
         expect(
             productComparator('по убыванию цены')(
                 { ...defaultProduct, price: 23434.234 },
@@ -97,8 +97,8 @@ describe('по убыванию цены', () => {
     });
 });
 
-describe('по возрастанию цены', () => {
-    it('equal', () => {
+describe('productComparator по возрастанию цены', () => {
+    it('equal price', () => {
         expect(
             productComparator('по возрастанию цены')(
                 defaultProduct,
@@ -107,7 +107,7 @@ describe('по возрастанию цены', () => {
         ).toEqual(0);
     });
 
-    it('less', () => {
+    it('less price', () => {
         expect(
             productComparator('по возрастанию цены')(
                 { ...defaultProduct, price: 123 },
@@ -116,7 +116,7 @@ describe('по возрастанию цены', () => {
         ).toEqual(-1);
     });
 
-    it('more', () => {
+    it('more price', () => {
         expect(
             productComparator('по возрастанию цены')(
                 { ...defaultProduct, price: 23434.234 },

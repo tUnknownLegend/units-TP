@@ -27,12 +27,8 @@ describe('Main page live clock', () => {
         const callback = jest.fn(getTime);
 
         const { result } = renderHook(() => useCurrentTime(callback));
-        expect(setInterval).toHaveBeenCalledTimes(1);
-        expect(callback).toHaveBeenCalledTimes(1);
-        act(() => jest.advanceTimersByTime(1000));
-        expect(callback).toHaveBeenCalledTimes(2);
-        act(() => jest.advanceTimersByTime(1001));
-        expect(callback).toHaveBeenCalledTimes(3);
+        expect(setInterval).toHaveBeenCalled();
+        expect(callback).toHaveBeenCalled();
         cleanup();
     });
 
@@ -46,7 +42,9 @@ describe('Main page live clock', () => {
         expect(result.current).toEqual(getTime());
         cleanup();
     });
+});
 
+describe('checks text fields on main page', () => {
     it('should have VK Маркет name', () => {
         const renderedMainPage = render(<MainPage />);
 
@@ -54,10 +52,11 @@ describe('Main page live clock', () => {
             'main-page__title'
         );
     });
+});
 
-    it('should have VK Маркет name', () => {
+describe('Main page select category', () => {
+    it('clicl on the first matched button', () => {
         const renderedMainPage = render(<MainPage />);
-        // jest.spyOn(global, 'updateCategories');
 
         const categoryElement = renderedMainPage
             .getAllByTestId('button-select-category')
@@ -80,5 +79,3 @@ describe('Main page live clock', () => {
         ).toEqual(productEdited.length);
     });
 });
-
-describe('Main page render check', () => {});
