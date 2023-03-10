@@ -9,7 +9,6 @@ import React from 'react';
 import { MainPage } from './MainPage';
 import { useCurrentTime } from '../../hooks';
 import '@testing-library/jest-dom';
-import { Category } from '../../types';
 
 beforeAll(() => {
     jest.useFakeTimers();
