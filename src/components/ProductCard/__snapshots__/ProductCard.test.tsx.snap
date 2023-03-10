@@ -30,11 +30,16 @@ exports[`ProductCard snapshot should have img 1`] = `
         Электроника
       </div>
     </div>
+    <img
+      alt="string"
+      class="product-card__image"
+      src="string"
+    />
   </div>
 </DocumentFragment>
 `;
 
-exports[`ProductCard snapshot should have no img 1`] = `
+exports[`ProductCard snapshot shouldnt have img 1`] = `
 <DocumentFragment>
   <div
     class="product-card"
@@ -64,11 +69,6 @@ exports[`ProductCard snapshot should have no img 1`] = `
         Электроника
       </div>
     </div>
-    <img
-      alt="string"
-      class="product-card__image"
-      src="string"
-    />
   </div>
 </DocumentFragment>
 `;
