@@ -20,7 +20,12 @@ export const ProductCard: FC<Product> = ({
                 <h1 className="product-card__price">
                     {getPrice(price, priceSymbol)}
                 </h1>
-                <div className="product-card__category">{category}</div>
+                <div
+                    className="product-card__category"
+                    data-testid="product-card__category"
+                >
+                    {category}
+                </div>
             </div>
             {imgUrl && (
                 <img src={imgUrl} alt={name} className="product-card__image" />

@@ -1,10 +1,16 @@
-import { act, cleanup, fireEvent, render, renderHook } from "@testing-library/react";
+import {
+    act,
+    cleanup,
+    fireEvent,
+    render,
+    renderHook,
+} from '@testing-library/react';
 import React from 'react';
 import { MainPage } from './MainPage';
 import { useCurrentTime } from '../../hooks';
 import '@testing-library/jest-dom';
 
-describe('Main page', () => {
+describe('Main page live clock', () => {
     beforeAll(() => {
         jest.useFakeTimers();
     });
@@ -43,8 +49,36 @@ describe('Main page', () => {
 
     it('should have VK Маркет name', () => {
         const renderedMainPage = render(<MainPage />);
+
         expect(renderedMainPage.getByText('VK Маркет')).toHaveClass(
             'main-page__title'
         );
     });
+
+    it('should have VK Маркет name', () => {
+        const renderedMainPage = render(<MainPage />);
+        // jest.spyOn(global, 'updateCategories');
+
+        const categoryElement = renderedMainPage
+            .getAllByTestId('button-select-category')
+            .at(0);
+
+        if (!categoryElement) {
+            fail('no category button was found');
+        }
+        fireEvent.click(categoryElement);
+
+        const productEdited = renderedMainPage.getAllByTestId(
+            'product-card__category'
+        );
+
+        expect(
+            productEdited.filter(
+                (productCard) =>
+                    productCard.innerText === categoryElement.innerText
+            ).length
+        ).toEqual(productEdited.length);
+    });
 });
+
+describe('Main page render check', () => {});

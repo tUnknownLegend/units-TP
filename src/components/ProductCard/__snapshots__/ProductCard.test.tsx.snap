@@ -1,109 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Categories test img 1`] = `
-<DocumentFragment>
-  <div
-    class="product-card"
-  >
-    <div
-      class="product-card__text"
-    >
-      <h2
-        class="product-card__name"
-      >
-        string
-      </h2>
-      <div
-        class="product-card__description"
-      >
-        string
-      </div>
-      <h1
-        class="product-card__price"
-      >
-        1,231 ₽
-      </h1>
-      <div
-        class="product-card__category"
-      >
-        Электроника
-      </div>
-    </div>
-  </div>
-</DocumentFragment>
-`;
-
-exports[`Categories test no img 1`] = `
-<DocumentFragment>
-  <div
-    class="product-card"
-  >
-    <div
-      class="product-card__text"
-    >
-      <h2
-        class="product-card__name"
-      >
-        string
-      </h2>
-      <div
-        class="product-card__description"
-      >
-        string
-      </div>
-      <h1
-        class="product-card__price"
-      >
-        1,231 ₽
-      </h1>
-      <div
-        class="product-card__category"
-      >
-        Электроника
-      </div>
-    </div>
-    <img
-      alt="string"
-      class="product-card__image"
-      src="string"
-    />
-  </div>
-</DocumentFragment>
-`;
-
-exports[`Categories test should call callback when category click 1`] = `
-<DocumentFragment>
-  <div
-    class="product-card"
-  >
-    <div
-      class="product-card__text"
-    >
-      <h2
-        class="product-card__name"
-      >
-        string
-      </h2>
-      <div
-        class="product-card__description"
-      >
-        string
-      </div>
-      <h1
-        class="product-card__price"
-      >
-        1,231 ₽
-      </h1>
-      <div
-        class="product-card__category"
-      >
-        Электроника
-      </div>
-    </div>
-  </div>
-</DocumentFragment>
-`;
-
 exports[`ProductCard snapshot should have img 1`] = `
 <DocumentFragment>
   <div
@@ -129,6 +25,7 @@ exports[`ProductCard snapshot should have img 1`] = `
       </h1>
       <div
         class="product-card__category"
+        data-testid="product-card__category"
       >
         Электроника
       </div>
@@ -162,6 +59,7 @@ exports[`ProductCard snapshot should have no img 1`] = `
       </h1>
       <div
         class="product-card__category"
+        data-testid="product-card__category"
       >
         Электроника
       </div>

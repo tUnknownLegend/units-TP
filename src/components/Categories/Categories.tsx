@@ -25,6 +25,7 @@ export const Categories: FC<CategoriesProps> = ({
                     categories__badge_selected:
                         selectedCategories.includes(filter),
                 })}
+                data-testid="button-select-category"
             >
                 {filter}
             </div>

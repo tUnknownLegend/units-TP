@@ -10,19 +10,35 @@ const defaultProduct = {
     category: 'Электроника' as Category,
 };
 
-describe('по умолчанию', () => {
-    it('equal', () => {
-        expect(getProductRUBPrice(defaultProduct)).toEqual(234.234);
-    });
-    it('positive', () => {
+describe('test getProductRUBPrice func', () => {
+    it('have no explicit priceSymbol', () => {
         expect(
-            getProductRUBPrice({ ...defaultProduct, price: 123123123.23423 })
+            getProductRUBPrice({
+                ...defaultProduct,
+                price: 100,
+                priceSymbol: '₽',
+            })
+        ).toEqual(100);
+    });
+
+    it('have rubles sign', () => {
+        expect(
+            getProductRUBPrice({
+                ...defaultProduct,
+                price: 123123123.23423,
+                priceSymbol: '₽',
+            })
         ).toEqual(123123123.23423);
     });
-    it('negative', () => {
+
+    it('have dollar sign', () => {
         expect(
-            getProductRUBPrice({ ...defaultProduct, price: -123123123.23423 })
-        ).toEqual(-123123123.23423);
+            getProductRUBPrice({
+                ...defaultProduct,
+                price: -123123123.23423,
+                priceSymbol: '$',
+            })
+        ).toEqual(-123123123.23423 * 70);
     });
 });
 
