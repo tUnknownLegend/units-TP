@@ -10,17 +10,17 @@ import { MainPage } from './MainPage';
 import { useCurrentTime } from '../../hooks';
 import '@testing-library/jest-dom';
 
+beforeAll(() => {
+    jest.useFakeTimers();
+});
+
+afterAll(() => {
+    jest.useRealTimers();
+});
+
+afterEach(jest.clearAllMocks);
+
 describe('Main page live clock', () => {
-    beforeAll(() => {
-        jest.useFakeTimers();
-    });
-
-    afterAll(() => {
-        jest.useRealTimers();
-    });
-
-    afterEach(jest.clearAllMocks);
-
     const getTime = () => new Date().toLocaleTimeString('ru-RU');
     it('should be called on advance time', () => {
         jest.spyOn(global, 'setInterval');
@@ -55,7 +55,7 @@ describe('checks text fields on main page', () => {
 });
 
 describe('Main page select category', () => {
-    it('clicl on the first matched button', () => {
+    it('click on the first matched button', () => {
         const renderedMainPage = render(<MainPage />);
 
         const categoryElement = renderedMainPage
