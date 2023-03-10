@@ -6,6 +6,13 @@ import { Category, PriceSymbol } from '../../types';
 
 afterEach(jest.clearAllMocks);
 
+jest.mock('../../utils/getPrice', () => {
+    return {
+        __esModule: true,
+        getPrice: jest.fn(() => '100 ₽'),
+    };
+});
+
 const elem = {
     id: 1,
     name: 'string',

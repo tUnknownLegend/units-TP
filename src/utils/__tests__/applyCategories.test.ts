@@ -1,6 +1,6 @@
 import { describe } from '@jest/globals';
-import { Category, PriceSymbol } from '../types';
-import { applyCategories } from './applyCategories';
+import { Category, PriceSymbol } from '../../types';
+import { applyCategories } from '../applyCategories';
 
 const defaultCategory = {
     imgUrl: 'string',

@@ -1,5 +1,5 @@
 import { describe } from '@jest/globals';
-import { updateCategories } from './updateCategories';
+import { updateCategories } from '../updateCategories';
 
 describe('updateCategories function', () => {
     it('has all categories', () => {

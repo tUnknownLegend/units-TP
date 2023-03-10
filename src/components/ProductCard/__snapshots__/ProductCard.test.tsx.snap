@@ -21,7 +21,7 @@ exports[`ProductCard snapshot should have img 1`] = `
       <h1
         class="product-card__price"
       >
-        1,231 ₽
+        100 ₽
       </h1>
       <div
         class="product-card__category"
@@ -55,7 +55,7 @@ exports[`ProductCard snapshot should have no img 1`] = `
       <h1
         class="product-card__price"
       >
-        1,231 ₽
+        100 ₽
       </h1>
       <div
         class="product-card__category"

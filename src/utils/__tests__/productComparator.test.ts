@@ -1,6 +1,6 @@
 import { describe } from '@jest/globals';
-import { Category } from '../types';
-import { productComparator, getProductRUBPrice } from './productComparator';
+import { Category } from '../../types';
+import { productComparator, getProductRUBPrice } from '../productComparator';
 
 const defaultProduct = {
     id: 1,

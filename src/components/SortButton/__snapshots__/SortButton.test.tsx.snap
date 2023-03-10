@@ -1,26 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button render SortButton snapshot 1`] = `
-<DocumentFragment>
-  <button
-    class="sort-button"
-  >
-    Сортировать по умолчанию
-  </button>
-</DocumentFragment>
-`;
-
 exports[`Button render SortButton snapshot and button text 1`] = `
-<DocumentFragment>
-  <button
-    class="sort-button"
-  >
-    Сортировать по умолчанию
-  </button>
-</DocumentFragment>
-`;
-
-exports[`Button render should contain sort text 1`] = `
 <DocumentFragment>
   <button
     class="sort-button"

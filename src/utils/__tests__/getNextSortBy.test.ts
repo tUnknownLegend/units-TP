@@ -1,5 +1,5 @@
 import { describe } from '@jest/globals';
-import { getNextSortBy } from './getNextSortBy';
+import { getNextSortBy } from '../getNextSortBy';
 
 describe('getNextSortBy function', () => {
     it('по умолчанию', () => {

@@ -26,7 +26,7 @@ describe('Main page live clock', () => {
         jest.spyOn(global, 'setInterval');
         const callback = jest.fn(getTime);
 
-        const { result } = renderHook(() => useCurrentTime(callback));
+        renderHook(() => useCurrentTime(callback));
         expect(setInterval).toHaveBeenCalled();
         expect(callback).toHaveBeenCalled();
         cleanup();
