@@ -59,12 +59,21 @@ describe('Main page live clock', () => {
 });
 
 describe('checks text fields on main page', () => {
-    it('should have VK Маркет name', () => {
+    jest.mock('../../utils/getNextSortBy', () => {
+        return {
+            __esModule: true,
+            getNextSortBy: jest.fn(() => 'по возрастанию цены'),
+        };
+    });
+
+    it('should have VK Маркет name and match snapshot', () => {
         const renderedMainPage = render(<MainPage />);
 
         expect(renderedMainPage.getByText('VK Маркет')).toHaveClass(
             'main-page__title'
         );
+
+        expect(renderedMainPage.asFragment()).toMatchSnapshot();
     });
 });
 

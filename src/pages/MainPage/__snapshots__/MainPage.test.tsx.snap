@@ -1,0 +1,175 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`checks text fields on main page should have VK Маркет name and match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="main-page"
+  >
+    <h2
+      class="main-page__title"
+    >
+      VK Маркет
+    </h2>
+    <h3>
+      20:44:35
+    </h3>
+    <div
+      class="main-page__parameters"
+    >
+      <div
+        class="categories"
+      >
+        <div
+          class="categories__badge"
+          data-testid="button-select-category"
+        >
+          Одежда
+        </div>
+        <div
+          class="categories__badge"
+          data-testid="button-select-category"
+        >
+          Для дома
+        </div>
+        <div
+          class="categories__badge"
+          data-testid="button-select-category"
+        >
+          Электроника
+        </div>
+      </div>
+      <button
+        class="sort-button"
+      >
+        Сортировать по умолчанию
+      </button>
+    </div>
+    <div
+      class="product-card"
+    >
+      <div
+        class="product-card__text"
+      >
+        <h2
+          class="product-card__name"
+        >
+          IPhone 14 Pro
+        </h2>
+        <div
+          class="product-card__description"
+        >
+          Latest iphone, buy it now
+        </div>
+        <h1
+          class="product-card__price"
+        >
+          999 ₽
+        </h1>
+        <div
+          class="product-card__category"
+          data-testid="product-card__category"
+        >
+          Электроника
+        </div>
+      </div>
+      <img
+        alt="IPhone 14 Pro"
+        class="product-card__image"
+        src="/iphone.png"
+      />
+    </div>
+    <div
+      class="product-card"
+    >
+      <div
+        class="product-card__text"
+      >
+        <h2
+          class="product-card__name"
+        >
+          Костюм гуся
+        </h2>
+        <div
+          class="product-card__description"
+        >
+          Запускаем гуся, работяги
+        </div>
+        <h1
+          class="product-card__price"
+        >
+          999 ₽
+        </h1>
+        <div
+          class="product-card__category"
+          data-testid="product-card__category"
+        >
+          Одежда
+        </div>
+      </div>
+    </div>
+    <div
+      class="product-card"
+    >
+      <div
+        class="product-card__text"
+      >
+        <h2
+          class="product-card__name"
+        >
+          Настольная лампа
+        </h2>
+        <div
+          class="product-card__description"
+        >
+          Говорят, что ее использовали в pixar
+        </div>
+        <h1
+          class="product-card__price"
+        >
+          999 ₽
+        </h1>
+        <div
+          class="product-card__category"
+          data-testid="product-card__category"
+        >
+          Для дома
+        </div>
+      </div>
+      <img
+        alt="Настольная лампа"
+        class="product-card__image"
+        src="/lamp.png"
+      />
+    </div>
+    <div
+      class="product-card"
+    >
+      <div
+        class="product-card__text"
+      >
+        <h2
+          class="product-card__name"
+        >
+          Принтер
+        </h2>
+        <div
+          class="product-card__description"
+        >
+          Незаменимая вещь для студента
+        </div>
+        <h1
+          class="product-card__price"
+        >
+          999 ₽
+        </h1>
+        <div
+          class="product-card__category"
+          data-testid="product-card__category"
+        >
+          Электроника
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
