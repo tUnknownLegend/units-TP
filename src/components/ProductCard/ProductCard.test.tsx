@@ -9,7 +9,7 @@ afterEach(jest.clearAllMocks);
 jest.mock('../../utils/getPrice', () => {
     return {
         __esModule: true,
-        getPrice: jest.fn(() => '100 ₽'),
+        getPrice: jest.fn(() => '999 ₽'),
     };
 });
 

@@ -9,6 +9,7 @@ import React from 'react';
 import { MainPage } from './MainPage';
 import { useCurrentTime } from '../../hooks';
 import '@testing-library/jest-dom';
+import { Category } from '../../types';
 
 beforeAll(() => {
     jest.useFakeTimers();
@@ -20,6 +21,19 @@ afterAll(() => {
 
 afterEach(jest.clearAllMocks);
 
+jest.mock('../../utils/getPrice', () => {
+    return {
+        __esModule: true,
+        getPrice: jest.fn(() => '999 ₽'),
+    };
+});
+
+jest.mock('../../utils/getNextSortBy', () => {
+    return {
+        __esModule: true,
+        getNextSortBy: jest.fn(() => 'по возрастанию цены'),
+    };
+});
 describe('Main page live clock', () => {
     const getTime = () => new Date().toLocaleTimeString('ru-RU');
     it('should be called on advance time', () => {
