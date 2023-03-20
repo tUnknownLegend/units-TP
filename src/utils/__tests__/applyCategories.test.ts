@@ -1,26 +1,27 @@
 import { describe } from '@jest/globals';
-import { Category, PriceSymbol } from '../../types';
+import { Product } from '../../types';
 import { applyCategories } from '../applyCategories';
 
-const defaultCategory = {
-    imgUrl: 'string',
-    price: 123,
-    name: 'string',
-    description: 'string',
-    id: 234523,
-    category: 'Электроника' as Category,
-    priceSymbol: '₽' as PriceSymbol,
-};
 describe('applyCategories function', () => {
+    const defaultCategory: Product = {
+        imgUrl: 'string',
+        price: 123,
+        name: 'string',
+        description: 'string',
+        id: 234523,
+        category: 'Электроника',
+        priceSymbol: '₽',
+    };
+
     it('empty categories', () => {
-        expect(applyCategories([defaultCategory], [])).toEqual([
+        expect(applyCategories([defaultCategory], [])).toStrictEqual([
             defaultCategory,
         ]);
     });
     it('single category', () => {
-        expect(applyCategories([defaultCategory], ['Электроника'])).toEqual([
-            defaultCategory,
-        ]);
+        expect(
+            applyCategories([defaultCategory], ['Электроника'])
+        ).toStrictEqual([defaultCategory]);
     });
     it('many products', () => {
         expect(
@@ -30,8 +31,11 @@ describe('applyCategories function', () => {
                     { ...defaultCategory, category: 'Для дома' },
                     { ...defaultCategory, category: 'Одежда' },
                 ],
-                ['Электроника']
+                ['Электроника', 'Для дома']
             )
-        ).toEqual([defaultCategory]);
+        ).toStrictEqual([
+            defaultCategory,
+            { ...defaultCategory, category: 'Для дома' },
+        ]);
     });
 });

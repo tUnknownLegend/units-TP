@@ -1,127 +1,132 @@
 import { describe } from '@jest/globals';
-import { Category } from '../../types';
-import { productComparator, getProductRUBPrice } from '../productComparator';
+import { PriceSymbol, Product, SortBy } from '../../types';
+import {
+    productComparator,
+    getProductRUBPrice,
+    dollarToRublesPrice,
+} from '../productComparator';
 
-const defaultProduct = {
+const defaultProduct: Product = {
     id: 1,
     name: 'string',
     description: 'string',
     price: 234.234,
-    category: 'Электроника' as Category,
+    category: 'Электроника',
 };
 
 describe('getProductRUBPrice func', () => {
-    it('have no explicit priceSymbol', () => {
-        expect(
-            getProductRUBPrice({
-                ...defaultProduct,
-                price: 100,
-                priceSymbol: '₽',
-            })
-        ).toEqual(100);
-    });
-
-    it('have rubles sign', () => {
-        expect(
-            getProductRUBPrice({
+    const testData: Array<{ value: Product; expected: number }> = [
+        {
+            value: { ...defaultProduct, price: 100, priceSymbol: '₽' },
+            expected: 100,
+        },
+        {
+            value: {
                 ...defaultProduct,
                 price: 123123123.23423,
-                priceSymbol: '₽',
-            })
-        ).toEqual(123123123.23423);
-    });
-
-    it('have dollar sign', () => {
-        expect(
-            getProductRUBPrice({
+            },
+            expected: 123123123.23423,
+        },
+        {
+            value: {
                 ...defaultProduct,
                 price: -123123123.23423,
                 priceSymbol: '$',
-            })
-        ).toEqual(-123123123.23423 * 70);
-    });
+            },
+            expected: -123123123.23423 * dollarToRublesPrice,
+        },
+    ];
+    test.each(testData)(
+        'should check if function converts price to rubles correctly',
+        ({ value, expected }) => {
+            expect(getProductRUBPrice(value)).toStrictEqual(expected);
+        }
+    );
 });
 
-describe('productComparator по умолчанию', () => {
-    it('equal price', () => {
+type testLoad = {
+    lhs: Product;
+    rhs: Product;
+    expected: number;
+};
+
+const templateTest = (payload: {
+    sortBy: SortBy;
+    equal: testLoad;
+    less: testLoad;
+    more: testLoad;
+}) => {
+    it('checks case with equal price comparison', () => {
         expect(
-            productComparator('по умолчанию')(defaultProduct, defaultProduct)
-        ).toEqual(0);
+            productComparator(payload.sortBy)(
+                payload.equal.lhs,
+                payload.equal.rhs
+            )
+        ).toStrictEqual(payload.equal.expected);
     });
 
-    it('less price', () => {
+    it('checks with less price comparison', () => {
         expect(
-            productComparator('по умолчанию')(
-                { ...defaultProduct, price: 123 },
-                { ...defaultProduct, price: 24234 }
+            productComparator(payload.sortBy)(
+                payload.less.lhs,
+                payload.less.rhs
             )
-        ).toEqual(0);
+        ).toStrictEqual(payload.less.expected);
     });
 
-    it('more price', () => {
+    it('checks with more price comparison', () => {
         expect(
-            productComparator('по умолчанию')(
-                { ...defaultProduct, price: 23434.234 },
-                { ...defaultProduct, price: -123 }
+            productComparator(payload.sortBy)(
+                payload.more.lhs,
+                payload.more.rhs
             )
-        ).toEqual(0);
+        ).toStrictEqual(payload.more.expected);
     });
-});
+};
+describe('productComparator по умолчанию', () =>
+    templateTest({
+        sortBy: 'по умолчанию',
+        equal: { lhs: defaultProduct, rhs: defaultProduct, expected: 0 },
+        less: {
+            lhs: { ...defaultProduct, price: 123 },
+            rhs: { ...defaultProduct, price: 24234 },
+            expected: 0,
+        },
+        more: {
+            lhs: { ...defaultProduct, price: 23434.234 },
+            rhs: { ...defaultProduct, price: 0 },
+            expected: 0,
+        },
+    }));
 
-describe('productComparator по убыванию цены', () => {
-    it('equal price', () => {
-        expect(
-            productComparator('по убыванию цены')(
-                defaultProduct,
-                defaultProduct
-            )
-        ).toEqual(0);
-    });
+describe('productComparator по убыванию цены', () =>
+    templateTest({
+        sortBy: 'по убыванию цены',
+        equal: { lhs: defaultProduct, rhs: defaultProduct, expected: 0 },
+        less: {
+            lhs: { ...defaultProduct, price: 123 },
+            rhs: { ...defaultProduct, price: 24234 },
+            expected: 1,
+        },
+        more: {
+            lhs: { ...defaultProduct, price: 234.234 },
+            rhs: { ...defaultProduct, price: -123 },
+            expected: -1,
+        },
+    }));
 
-    it('less price', () => {
-        expect(
-            productComparator('по убыванию цены')(
-                { ...defaultProduct, price: 123 },
-                { ...defaultProduct, price: 24234 }
-            )
-        ).toEqual(1);
-    });
-
-    it('more price', () => {
-        expect(
-            productComparator('по убыванию цены')(
-                { ...defaultProduct, price: 23434.234 },
-                { ...defaultProduct, price: -123 }
-            )
-        ).toEqual(-1);
-    });
-});
-
-describe('productComparator по возрастанию цены', () => {
-    it('equal price', () => {
-        expect(
-            productComparator('по возрастанию цены')(
-                defaultProduct,
-                defaultProduct
-            )
-        ).toEqual(0);
-    });
-
-    it('less price', () => {
-        expect(
-            productComparator('по возрастанию цены')(
-                { ...defaultProduct, price: 123 },
-                { ...defaultProduct, price: 24234 }
-            )
-        ).toEqual(-1);
-    });
-
-    it('more price', () => {
-        expect(
-            productComparator('по возрастанию цены')(
-                { ...defaultProduct, price: 23434.234 },
-                { ...defaultProduct, price: -123 }
-            )
-        ).toEqual(1);
-    });
-});
+describe('productComparator по возрастанию цены', () =>
+    templateTest({
+        sortBy: 'по возрастанию цены',
+        equal: { lhs: defaultProduct, rhs: defaultProduct, expected: 0 },
+        less: {
+            lhs: { ...defaultProduct, price: -123 },
+            rhs: { ...defaultProduct, price: 0 },
+            expected: -1,
+        },
+        more: {
+            lhs: { ...defaultProduct, price: -23 },
+            rhs: { ...defaultProduct, price: -123 },
+            expected: 1,
+        },
+    }));

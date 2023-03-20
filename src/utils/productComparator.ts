@@ -1,7 +1,13 @@
 import type { Product, SortBy } from '../types';
 
+/**
+ * export is only for tests, do not use for other purposes
+ */
+export const dollarToRublesPrice = 70;
 export const getProductRUBPrice = (product: Product) =>
-    product.priceSymbol === '$' ? product.price * 70 : product.price;
+    product.priceSymbol === '$'
+        ? product.price * dollarToRublesPrice
+        : product.price;
 
 export const productComparator =
     (sortBy: SortBy) =>

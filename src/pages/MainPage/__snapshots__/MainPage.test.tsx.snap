@@ -40,6 +40,7 @@ exports[`checks text fields on main page should have VK Маркет name and ma
       </div>
       <button
         class="sort-button"
+        data-testid="sort-button-id"
       >
         Сортировать по умолчанию
       </button>

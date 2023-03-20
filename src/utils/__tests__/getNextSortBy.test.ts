@@ -1,16 +1,17 @@
 import { describe } from '@jest/globals';
 import { getNextSortBy } from '../getNextSortBy';
+import { SortBy } from '../../types';
 
 describe('getNextSortBy function', () => {
-    it('по умолчанию', () => {
-        expect(getNextSortBy('по умолчанию')).toEqual('по возрастанию цены');
-    });
-    it('по возрастанию цены', () => {
-        expect(getNextSortBy('по возрастанию цены')).toEqual(
-            'по убыванию цены'
-        );
-    });
-    it('по убыванию цены', () => {
-        expect(getNextSortBy('по убыванию цены')).toEqual('по умолчанию');
-    });
+    const testData: Array<{ sortBy: SortBy; expected: SortBy }> = [
+        { sortBy: 'по умолчанию', expected: 'по возрастанию цены' },
+        { sortBy: 'по возрастанию цены', expected: 'по убыванию цены' },
+        { sortBy: 'по убыванию цены', expected: 'по умолчанию' },
+    ];
+    test.each(testData)(
+        'should check if next sorting order is correct',
+        ({ sortBy, expected }) => {
+            expect(getNextSortBy(sortBy)).toStrictEqual(expected);
+        }
+    );
 });

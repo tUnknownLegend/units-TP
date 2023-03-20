@@ -14,7 +14,11 @@ export const SortButton: FC<SortButtonProps> = ({
     currentSort,
 }) => {
     return (
-        <button className="sort-button" onClick={onSortButtonClick}>
+        <button
+            data-testid="sort-button-id"
+            className="sort-button"
+            onClick={onSortButtonClick}
+        >
             Сортировать {currentSort}
         </button>
     );

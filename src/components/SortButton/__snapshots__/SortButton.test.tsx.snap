@@ -4,6 +4,7 @@ exports[`Button render SortButton snapshot and button text 1`] = `
 <DocumentFragment>
   <button
     class="sort-button"
+    data-testid="sort-button-id"
   >
     Сортировать по умолчанию
   </button>

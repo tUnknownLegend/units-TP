@@ -21,8 +21,8 @@ export const ProductCard: FC<Product> = ({
                     {getPrice(price, priceSymbol)}
                 </h1>
                 <div
-                    className="product-card__category"
                     data-testid="product-card__category"
+                    className="product-card__category"
                 >
                     {category}
                 </div>

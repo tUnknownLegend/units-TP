@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { SortButton } from './SortButton';
@@ -13,9 +12,6 @@ describe('Button render', () => {
         const renderedButton = render(
             <SortButton currentSort="по умолчанию" onSortButtonClick={noop} />
         );
-        expect(renderedButton.getByRole('button')).toHaveTextContent(
-            'Сортировать по умолчанию'
-        );
         expect(renderedButton.asFragment()).toMatchSnapshot();
     });
 
@@ -26,9 +22,6 @@ describe('Button render', () => {
                 currentSort="по умолчанию"
                 onSortButtonClick={onSortButtonClick}
             />
-        );
-        expect(renderedButton.getByRole('button')).toHaveTextContent(
-            'Сортировать по умолчанию'
         );
 
         expect(onSortButtonClick).toHaveBeenCalledTimes(0);

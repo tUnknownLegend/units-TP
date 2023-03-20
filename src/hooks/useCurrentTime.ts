@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 
-export const useCurrentTime = (
-    callback = () => new Date().toLocaleTimeString('ru-RU')
-) => {
+export const useCurrentTime = () => {
+    const callback = () => new Date().toLocaleTimeString('ru-RU');
     const [currentTime, setCurrentTime] = useState(callback);
 
     useEffect(() => {

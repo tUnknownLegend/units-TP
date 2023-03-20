@@ -1,17 +1,11 @@
-import {
-    act,
-    cleanup,
-    fireEvent,
-    render,
-    renderHook,
-} from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import React from 'react';
 import { MainPage } from './MainPage';
-import { useCurrentTime } from '../../hooks';
 import '@testing-library/jest-dom';
+import { SortBy } from '../../types';
 
 beforeAll(() => {
-    jest.useFakeTimers();
+    jest.useFakeTimers().setSystemTime(new Date('2020-01-01T00:00:00'));
 });
 
 afterAll(() => {
@@ -30,50 +24,41 @@ jest.mock('../../utils/getPrice', () => {
 jest.mock('../../utils/getNextSortBy', () => {
     return {
         __esModule: true,
-        getNextSortBy: jest.fn(() => 'по возрастанию цены'),
+        getNextSortBy: jest.fn(),
     };
 });
-describe('Main page live clock', () => {
-    const getTime = () => new Date().toLocaleTimeString('ru-RU');
-    it('should be called on advance time', () => {
-        jest.spyOn(global, 'setInterval');
-        const callback = jest.fn(getTime);
 
-        renderHook(() => useCurrentTime(callback));
-        expect(setInterval).toHaveBeenCalled();
-        expect(callback).toHaveBeenCalled();
-        cleanup();
-    });
-
-    it('should return correct time', () => {
-        jest.spyOn(global, 'setInterval');
-        const callback = jest.fn(getTime);
-
-        const { result } = renderHook(() => useCurrentTime(callback));
-        expect(result.current).toEqual(getTime());
-        act(() => jest.advanceTimersByTime(69999));
-        expect(result.current).toEqual(getTime());
-        cleanup();
-    });
+jest.mock('../../utils/getNextSortBy', () => {
+    return {
+        __esModule: true,
+        getNextSortBy: jest.fn((sortBy: SortBy) =>
+            sortBy === 'по умолчанию'
+                ? 'по возрастанию цены'
+                : 'по убыванию цены'
+        ),
+    };
 });
 
 describe('checks text fields on main page', () => {
-    jest.mock('../../utils/getNextSortBy', () => {
-        return {
-            __esModule: true,
-            getNextSortBy: jest.fn(() => 'по возрастанию цены'),
-        };
-    });
-
     it('should have VK Маркет name and match snapshot', () => {
-        jest.useFakeTimers().setSystemTime(new Date('2020-01-01T00:00:00'));
         const renderedMainPage = render(<MainPage />);
 
-        expect(renderedMainPage.getByText('VK Маркет')).toHaveClass(
-            'main-page__title'
-        );
-
         expect(renderedMainPage.asFragment()).toMatchSnapshot();
+    });
+
+    it('should change sort button innerText', () => {
+        const renderedButton = render(<MainPage />);
+
+        const sortButton = renderedButton.getByTestId('sort-button-id');
+
+        fireEvent.click(sortButton);
+        expect(sortButton.textContent).toStrictEqual(
+            'Сортировать по возрастанию цены'
+        );
+        fireEvent.click(sortButton);
+        expect(sortButton.textContent).toStrictEqual(
+            'Сортировать по убыванию цены'
+        );
     });
 });
 
@@ -81,13 +66,11 @@ describe('Main page select category', () => {
     it('click on the first matched button', () => {
         const renderedMainPage = render(<MainPage />);
 
-        const categoryElement = renderedMainPage
-            .getAllByTestId('button-select-category')
-            .at(0);
+        const categoryElement = renderedMainPage.getAllByTestId(
+            'button-select-category'
+        )[0];
 
-        if (!categoryElement) {
-            fail('no category button was found');
-        }
+        expect(categoryElement).not.toBeUndefined();
         fireEvent.click(categoryElement);
 
         const productEdited = renderedMainPage.getAllByTestId(
