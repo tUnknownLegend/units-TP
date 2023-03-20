@@ -1,6 +1,6 @@
 import { describe } from '@jest/globals';
 import { getPrice } from '../getPrice';
-import { PriceSymbol, SortBy } from '../../types';
+import { PriceSymbol } from '../../types';
 
 describe('getPrice function', () => {
     const testData: Array<{

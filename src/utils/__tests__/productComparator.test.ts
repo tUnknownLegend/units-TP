@@ -1,5 +1,5 @@
 import { describe } from '@jest/globals';
-import { PriceSymbol, Product, SortBy } from '../../types';
+import { Product, SortBy } from '../../types';
 import {
     productComparator,
     getProductRUBPrice,

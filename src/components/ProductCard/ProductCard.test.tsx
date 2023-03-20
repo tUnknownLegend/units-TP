@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { ProductCard } from './ProductCard';
-import { Category, PriceSymbol, Product } from '../../types';
+import { Product } from '../../types';
 
 afterEach(jest.clearAllMocks);
 
