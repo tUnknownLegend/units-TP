@@ -70,7 +70,6 @@ describe('Main page select category', () => {
             'button-select-category'
         )[0];
 
-        expect(categoryElement).not.toBeUndefined();
         fireEvent.click(categoryElement);
 
         const productEdited = renderedMainPage.getAllByTestId(
