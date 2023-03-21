@@ -76,12 +76,12 @@ describe('Main page select category', () => {
         const productEdited = renderedMainPage.getAllByTestId(
             'product-card__category'
         );
-
         expect(
-            productEdited.filter(
-                (productCard) =>
-                    productCard.innerText === categoryElement.innerText
-            ).length
-        ).toEqual(productEdited.length);
+            productEdited.reduce(
+                (isValid, { innerText }) =>
+                    isValid && innerText === categoryElement.innerText,
+                true
+            )
+        ).toBeTruthy();
     });
 });
