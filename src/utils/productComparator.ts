@@ -4,6 +4,10 @@ import type { Product, SortBy } from '../types';
  * export is only for tests, do not use for other purposes
  */
 export const dollarToRublesPrice = 70;
+
+/**
+ * export is only for tests, do not use for other purposes
+ */
 export const getProductRUBPrice = (product: Product) =>
     product.priceSymbol === '$'
         ? product.price * dollarToRublesPrice
