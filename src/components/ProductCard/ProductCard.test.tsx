@@ -25,15 +25,12 @@ describe('ProductCard snapshot', () => {
     it('should have img', () => {
         const renderedProductCard = render(<ProductCard {...elem} />);
 
-        const imgElement = renderedProductCard.getByRole('img');
+        const imgElement = renderedProductCard.getByTestId(
+            'product-card__image'
+        );
 
-        if (imgElement instanceof HTMLImageElement) {
-            expect(imgElement.src).toStrictEqual(
-                'http://localhost/' + elem.imgUrl
-            );
-        } else {
-            expect(imgElement).toBeInstanceOf(HTMLImageElement);
-        }
+        expect(imgElement).toBeInstanceOf(HTMLImageElement);
+        expect(imgElement.getAttribute('src')).toStrictEqual(elem.imgUrl);
 
         expect(renderedProductCard.asFragment()).toMatchSnapshot();
     });
@@ -42,7 +39,9 @@ describe('ProductCard snapshot', () => {
             <ProductCard {...elem} imgUrl={undefined} />
         );
 
-        expect(renderedProductCard.queryByRole('img')).toBeNull();
+        expect(
+            renderedProductCard.queryByTestId('product-card__image')
+        ).toBeNull();
         expect(renderedProductCard.asFragment()).toMatchSnapshot();
     });
 });

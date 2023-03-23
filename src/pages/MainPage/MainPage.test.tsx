@@ -76,10 +76,8 @@ describe('Main page select category', () => {
             'product-card__category'
         );
         expect(
-            productEdited.reduce(
-                (isValid, { innerText }) =>
-                    isValid && innerText === categoryElement.innerText,
-                true
+            productEdited.every(
+                ({ innerText }) => innerText === categoryElement.innerText
             )
         ).toBeTruthy();
     });

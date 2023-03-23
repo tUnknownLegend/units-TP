@@ -33,6 +33,7 @@ exports[`ProductCard snapshot should have img 1`] = `
     <img
       alt="string"
       class="product-card__image"
+      data-testid="product-card__image"
       src="string"
     />
   </div>
