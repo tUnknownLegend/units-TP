@@ -76,6 +76,7 @@ exports[`checks text fields on main page should have VK Маркет name and ma
       <img
         alt="IPhone 14 Pro"
         class="product-card__image"
+        data-testid="product-card__image"
         src="/iphone.png"
       />
     </div>
@@ -139,6 +140,7 @@ exports[`checks text fields on main page should have VK Маркет name and ma
       <img
         alt="Настольная лампа"
         class="product-card__image"
+        data-testid="product-card__image"
         src="/lamp.png"
       />
     </div>
